@@ -29,6 +29,7 @@ function Movies() {
 
   async function handleSearch(e) {
     setInitialData("");
+
     try {
       const searchResponse = await axios.get(
         `${process.env.REACT_APP_OMDB_API_URL}/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${input}`
@@ -36,7 +37,7 @@ function Movies() {
 
       setSearchedData(searchResponse.data);
       console.log(searchedData);
-      setInput("")
+      setInput("");
     } catch (error) {
       console.error(error);
     }
@@ -58,8 +59,8 @@ function Movies() {
           setInput(e.target.value);
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSearch()
+          if (e.key === "Enter" && input) {
+            handleSearch();
           }
         }}
         value={input}
@@ -67,6 +68,7 @@ function Movies() {
       <button
         className="bg-gray-600  p-1 pr-4 pl-4 rounded ml-2  hover:bg-orange-950 hover:text-smoke "
         onClick={handleSearch}
+        disabled={!input}
       >
         Find
       </button>
@@ -80,7 +82,8 @@ function Movies() {
               <select
                 className="select text border-l-amber-900 bg-slate-700 text-smoke hover:cursor-pointer p-1 "
                 onChange={(e) => {
-                  setFilter(e.target.value), console.log(filter);
+                  setFilter(e.target.value);
+                  // console.log(filter);
                 }}
               >
                 <option value="">Filter by</option>
@@ -116,7 +119,7 @@ function Movies() {
               <p
                 className="cursor-pointer"
                 onClick={() => {
-                  page == 1 ? null : setPage(page - 1), console.log(page);
+                  page == 1 ? setPage(1) : setPage(Number(page - 1));
                 }}
               >
                 Previous
@@ -158,7 +161,7 @@ function Movies() {
               <p
                 className="cursor-pointer"
                 onClick={() => {
-                  setPage(Number(page + 1)), console.log(page);
+                  setPage(Number(page + 1));
                 }}
               >
                 Next
