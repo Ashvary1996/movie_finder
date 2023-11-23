@@ -8,6 +8,11 @@ function Movies() {
   const [initialData, setInitialData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
 
+  useEffect(() => {
+    displayMovie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, [page, filter]);
+
   const handlePage = (e) => {
     setPage(Number(e.target.innerText));
   };
@@ -16,7 +21,7 @@ function Movies() {
     setSearchedData("");
     displayMovie();
   };
-  async function displayMovie() {
+  const displayMovie = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_TMDB_API_URL}/movie/${filter}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-IN&page=${page}&query=${input}`
@@ -25,7 +30,7 @@ function Movies() {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   async function handleSearch(e) {
     setInitialData("");
@@ -42,10 +47,6 @@ function Movies() {
       console.error(error);
     }
   }
-
-  useEffect(() => {
-    displayMovie();
-  }, [page, filter]);
 
   return (
     <div>
