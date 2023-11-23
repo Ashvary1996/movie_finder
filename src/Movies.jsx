@@ -120,7 +120,7 @@ function Movies() {
               <p
                 className="cursor-pointer"
                 onClick={() => {
-                  page == 1 ? setPage(1) : setPage(Number(page - 1));
+                  page === 1 ? setPage(1) : setPage(Number(page - 1));
                 }}
               >
                 Previous
@@ -192,10 +192,10 @@ function Movies() {
                       src={elem.Poster}
                       alt="img"
                     />
-                    <h1>Title : {elem.Title}</h1>
+                    <h1 className="mt-5">Title : {elem.Title}</h1>
                     <h1>Release Year : {elem.Year}</h1>
                     <h1>Type : {elem.Type}</h1>
-                    <h1>Rating : {Math.floor(elem.vote_average)}</h1>
+                    
                   </div>
                 ))}
               </div>
