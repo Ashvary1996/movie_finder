@@ -38,11 +38,15 @@
 }
 
 .movieSingleBox {
-  border: 1px solid gray;
+  border: 1px solid rgb(128, 128, 128);
   border-radius: 10px;
   margin: auto;
   width: 300px;
   height: 500px;
-  background-color: rgba(192, 120, 25, 0.53);
+  background-color: rgba(192, 120, 25, 0.208);
   font-weight: 600;
+ 
+}
+.movieSingleBox:hover {
+  background-color: rgba(192, 120, 25, 0.361);
 }
